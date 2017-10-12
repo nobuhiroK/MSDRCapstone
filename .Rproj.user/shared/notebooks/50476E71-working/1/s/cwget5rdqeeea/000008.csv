@@ -27,3 +27,6 @@ cols(
 "
 "2","See spec(...) for full column specifications.
 "
+"2","Error in mutate(LATITUDE = as.numeric(as.character(LONGITUDE))) : 
+  object 'LONGITUDE' not found
+"

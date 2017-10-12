@@ -46,7 +46,9 @@ eq_clean_data <- function(dat = read_signif()) {
   dt_clean_month_day_date <- dat %>%
     mutate(MONTH = ifelse(is.na(MONTH), 1, MONTH)) %>%
     mutate(DAY = ifelse(is.na(DAY), 1, DAY)) %>%
-    mutate(DATE = make_date(YEAR, MONTH, DAY))
+    mutate(DATE = make_date(YEAR, MONTH, DAY)) %>%
+    mutate(LATITUDE = as.numeric(as.character(LATITUDE)))
+    ##mutate(LATITUDE = as.numeric(as.character(LONGITUDE)))
 
 }
 
