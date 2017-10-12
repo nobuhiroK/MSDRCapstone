@@ -78,4 +78,7 @@ summary(dt_clean_month_day_date$DATE)
 ```{r}
 dt_clean <- eq_clean_data()
 ```
+```{r}
+class(dt_clean$DATE)
+```
 
