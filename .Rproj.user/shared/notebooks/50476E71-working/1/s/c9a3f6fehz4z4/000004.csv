@@ -1,0 +1,4 @@
+"0","clean_month <- dat %>%"
+"0","    filter(is.na(MONTH)) %>%"
+"0","    mutate(MONTH = 1)"
+"0","head(clean_month)"

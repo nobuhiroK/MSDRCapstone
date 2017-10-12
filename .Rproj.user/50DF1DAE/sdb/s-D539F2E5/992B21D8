@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"working\"\nauthor: \"Nobuhiro Kikuchi\"\ndate: \"2017年10月12日\"\noutput: html_document\n---\n\n```{r setup, include=FALSE}\nknitr::opts_chunk$set(echo = TRUE)\nSys.setlocale(\"LC_ALL\", \"C\")\n```\n\n```{r}\nhead(dat)\n```\n```{r}\nlibrary(dplyr)\nlibrary(magrittr)\nlibrary(lubridate)\n```\n\n\n\n```{r}\nclean_month <- dat %>%\n    filter(is.na(MONTH)) %>%\n    mutate(MONTH = 1)\nhead(clean_month)\n```\n\n```{r}\nsummary(clean_month$MONTH)\n```\n\n```{r}\ndt_clean_month_day_date <- dat %>%\n  mutate(MONTH = ifelse(is.na(MONTH), 1, MONTH)) %>%\n  mutate(DAY = ifelse(is.na(DAY), 1, DAY)) %>%\n  mutate(DATE = ymd(YEAR, MONTH, DAY))\n```\n\n```{r}\nsummary(dt_clean_month_day$MONTH)\n```\n```{r}\nsummary(dt_clean_month_day$DAY)\n```\n\n\n\n```{r}\nhead(dt_clean_month, 100)\n```\n```{r}\ndate <- ymd(\"1869/2/6\")\ndate\n```\n\n```{r}\ndate2 <- ymd(\"-1869/2/6\")\ndate2\n```\n\n\n```{r}\ndt_clean_month_day_date <- dat %>%\n  mutate(MONTH = ifelse(is.na(MONTH), 1, MONTH)) %>%\n  mutate(DAY = ifelse(is.na(DAY), 1, DAY)) %>%\n  mutate(DATE = make_date(YEAR, MONTH, DAY))\n```\n\n```{r}\nsummary(dt_clean_month_day_date$DATE)\n```\n\n\n\n```{r}\ndt_clean <- eq_clean_data()\n```\n```{r}\nclass(dt_clean$DATE)\n```\n\n",
+    "created" : 1507786273297.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2533538735",
+    "id" : "992B21D8",
+    "lastKnownWriteTime" : 1507800460,
+    "last_content_update" : 1507801695986,
+    "path" : "~/MSDRCapstone/R/working.Rmd",
+    "project_path" : "R/working.Rmd",
+    "properties" : {
+        "last_setup_crc32" : "87FBF949552cb49e",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

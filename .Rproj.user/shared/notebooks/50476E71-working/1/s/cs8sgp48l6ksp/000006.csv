@@ -1,0 +1,8 @@
+"0","dt_clean_month_day_date <- dat %>%"
+"0","  mutate(MONTH = ifelse(is.na(MONTH), 1, MONTH)) %>%"
+"0","  mutate(DAY = ifelse(is.na(DAY), 1, DAY)) %>%"
+"0","  mutate(DATE = ymd(YEAR, MONTH, DAY))"
+"2","All formats failed to parse. No formats found."
+"2","Error in mutate_impl(.data, dots) : 
+  Column `DATE` must be length 5962 (the number of rows) or one, not 17886
+"

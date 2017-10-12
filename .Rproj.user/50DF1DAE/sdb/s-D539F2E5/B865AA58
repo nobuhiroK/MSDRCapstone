@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "Package: MSDRCapstone\nType: Package\nTitle: What the Package Does (Title Case)\nVersion: 0.1.0\nAuthor: Who wrote it\nMaintainer: The package maintainer <yourself@somewhere.net>\nDescription: More about what it does (maybe more than one line)\n    Use four spaces when indenting paragraphs within the Description.\nLicense: What license is it under?\nEncoding: UTF-8\nLazyData: true\nRoxygenNote: 6.0.1\nImports: readr,\n    dplyr,\n    magrittr,\n    lubridate\n",
+    "created" : 1507771297101.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1555116422",
+    "id" : "B865AA58",
+    "lastKnownWriteTime" : 1507801391,
+    "last_content_update" : 1507801391,
+    "path" : "~/MSDRCapstone/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "dcf"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Read NOAA significant earthquke data\n#'\n#' @importFrom readr read_delim\n#' @param path  defalut path set to inst/extdata/\"signif.txt\"\n#' @param url  set TRUE to download data from NOAA website\n#'\n#' @return a tibble containing 47 vaiables\n#'\n#'\n#' @examples\n#' dat <- read_signif(url = TRUE)\n#'\n#' @export\n\nread_signif <- function(path = system.file(\"extdata\", \"signif.txt\", package = \"MSDRCapstone\"), url =FALSE) {\n  if (url ==  TRUE){\n    signif_dat <- read_delim(url(\"https://www.ngdc.noaa.gov/nndc/struts/results?type_0=Exact&query_0=$ID&t=101650&s=13&d=189&dfn=signif.txt\"),  delim = '\\t')\n  }else{\n    signif_dat <- read_delim(path,  delim = '\\t')\n  }\n}\n\n\n#' Clean the row signif_dat\n#'\n#' @importFrom dplyr mutate\n#' @importFrom magrittr %>%\n#' @importFrom lubridate make_date\n#' @name %>%\n#' @rdname pipe\n#'\n#' @description\n#'     A date column created by uniting the year, month, day and converting it to the Date class\n#'     LATITUDE and LONGITUDE columns converted to numeric class\n#'\n#' @return\n#' a tibble containing 48 vaiables\n#'\n#'\n#' @examples\n#' clean_dat <- eq_clean_data()\n#'\n#' @export\n\neq_clean_data <- function(dat = read_signif()) {\n  dt_clean_month_day_date <- dat %>%\n    mutate(MONTH = ifelse(is.na(MONTH), 1, MONTH)) %>%\n    mutate(DAY = ifelse(is.na(DAY), 1, DAY)) %>%\n    mutate(DATE = make_date(YEAR, MONTH, DAY))\n\n}\n\n\n\n",
+    "created" : 1507766821364.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "475956842",
+    "id" : "71CF29C9",
+    "lastKnownWriteTime" : 1507801553,
+    "last_content_update" : 1507801553898,
+    "path" : "~/MSDRCapstone/R/clean_data.R",
+    "project_path" : "R/clean_data.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

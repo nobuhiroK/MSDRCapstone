@@ -1,0 +1,13 @@
+"0","library(dplyr)"
+"0","library(magrittr)"
+"0","library(lubridate)"
+"2"," パッケージ 'lubridate' はバージョン 3.4.2 の R の下で造られました "
+"2","
+ 次のパッケージを付け加えます: 'lubridate' 
+
+"
+"2"," 以下のオブジェクトは 'package:base' からマスクされています: 
+
+     date 
+
+"
