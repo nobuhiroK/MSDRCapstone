@@ -7,6 +7,9 @@
 \usage{
 eq_clean_data(dat = read_signif())
 }
+\arguments{
+\item{a}{tibble of NOAA signif data with 47 variables, default for signif.txt}
+}
 \value{
 a tibble containing 48 vaiables
 }
