@@ -26,8 +26,7 @@ read_signif <- function(path = system.file("extdata", "signif.txt", package = "M
 #' @importFrom magrittr %>%
 #' @importFrom lubridate make_date
 #' @importFrom tools toTitleCase
-#' @name %>%
-#' @rdname pipe
+#'
 #'
 #' @description
 #'     A date column created by uniting the year, month, day and converting it to the Date class
