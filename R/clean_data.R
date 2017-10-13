@@ -11,7 +11,6 @@
 #' dat <- read_signif(url = TRUE)
 #'
 #' @export
-
 read_signif <- function(path = system.file("extdata", "signif.txt", package = "MSDRCapstone"), url =FALSE) {
   if (url ==  TRUE){
     signif_dat <- read_delim(url("https://www.ngdc.noaa.gov/nndc/struts/results?type_0=Exact&query_0=$ID&t=101650&s=13&d=189&dfn=signif.txt"),  delim = '\t')
@@ -26,6 +25,7 @@ read_signif <- function(path = system.file("extdata", "signif.txt", package = "M
 #' @importFrom dplyr mutate
 #' @importFrom magrittr %>%
 #' @importFrom lubridate make_date
+#' @importFrom tools toTitleCase
 #' @name %>%
 #' @rdname pipe
 #'
@@ -33,6 +33,9 @@ read_signif <- function(path = system.file("extdata", "signif.txt", package = "M
 #'     A date column created by uniting the year, month, day and converting it to the Date class
 #'     LATITUDE and LONGITUDE columns converted to numeric class
 #'
+#'
+#' @param
+#' a tibble of NOAA signif data with 47 variables, default for signif.txt
 #' @return
 #' a tibble containing 48 vaiables
 #'
@@ -41,14 +44,47 @@ read_signif <- function(path = system.file("extdata", "signif.txt", package = "M
 #' clean_dat <- eq_clean_data()
 #'
 #' @export
-
 eq_clean_data <- function(dat = read_signif()) {
-  dt_clean_month_day_date <- dat %>%
+  dt_clean_month_day_date_long_lat <- dat %>%
     mutate(MONTH = ifelse(is.na(MONTH), 1, MONTH)) %>%
     mutate(DAY = ifelse(is.na(DAY), 1, DAY)) %>%
     mutate(DATE = make_date(YEAR, MONTH, DAY)) %>%
-    mutate(LATITUDE = as.numeric(as.character(LATITUDE)))
-    ##mutate(LATITUDE = as.numeric(as.character(LONGITUDE)))
+    mutate(LATITUDE = as.numeric(LATITUDE)) %>%
+    mutate(LONGITUDE = as.numeric(LONGITUDE))
+
+}
+
+#' cleans the LOCATION_NAME
+#' @importFrom dplyr mutate
+#' @importFrom dplyr select
+#' @importFrom dplyr rowwise
+#' @importFrom tidyr separate
+#' @importFrom stringi stri_trans_totitle
+#' @importFrom magrittr %>%
+#'
+#'
+#' @description
+#' stripping out the country name (including the colon)
+#' and converts names to title case (as opposed to all caps)
+#'
+#'
+#' @param dat, default for cleaned signif.txt from eq_clean_data()
+#'
+#' @return
+#' a cleand tibble of 48 variables
+#'
+#'
+#' @examples
+#' clean_location <- eq_location_clean()
+#'
+#' @export
+eq_location_clean <- function(dat = eq_clean_data()) {
+  clean_location <- dat %>%
+    separate(LOCATION_NAME, c("first", "second"), sep = ":") %>%
+    select(-first) %>%
+    rowwise() %>%
+    mutate(LOCATION_NAME = ifelse(is.na(second), "Unidentified", stri_trans_totitle(tolower(second)))) %>%
+    select(-second)
 
 }
 

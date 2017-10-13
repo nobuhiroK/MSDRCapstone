@@ -13,4 +13,7 @@ RoxygenNote: 6.0.1
 Imports: readr,
     dplyr,
     magrittr,
-    lubridate
+    lubridate,
+    tools,
+    tidyr,
+    stringi

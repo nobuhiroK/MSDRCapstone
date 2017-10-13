@@ -79,6 +79,32 @@ summary(dt_clean_month_day_date$DATE)
 dt_clean <- eq_clean_data()
 ```
 ```{r}
-class(dt_clean$DATE)
+class(dt_clean$LATITUDE)
+```
+
+```{r}
+class(dt_clean$LONGITUDE)
+```
+
+```{r}
+clean_location <- eq_location_clean()
+```
+
+```{r}
+head(unlist(clean_location$LOCATION_NAME))
+
+```
+
+```{r}
+library(tools)
+toTitleCase(tolower(trimws(strsplit(dt_clean$LOCATION_NAME[1], ":")[[1]][2], "both")))
+```
+
+```{r}
+class(clean_location$LOCATION_NAME)
+```
+
+```{r}
+for (clean_location$LOCATION_NAME)
 ```
 
