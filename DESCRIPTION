@@ -16,4 +16,6 @@ Imports: readr,
     lubridate,
     tools,
     tidyr,
-    stringi
+    stringi,
+    ggplot2,
+    grid
