@@ -1,4 +1,4 @@
-#' Read NOAA significant earthquke data
+130#' Read NOAA significant earthquke data
 #'
 #' @importFrom readr read_delim
 #' @param path  defalut path set to inst/extdata/"signif.txt"
@@ -13,9 +13,9 @@
 #' @export
 read_signif <- function(path = system.file("extdata", "signif.txt", package = "MSDRCapstone"), url =FALSE) {
   if (url ==  TRUE){
-    signif_dat <-readr::read_delim(url("https://www.ngdc.noaa.gov/nndc/struts/results?type_0=Exact&query_0=$ID&t=101650&s=13&d=189&dfn=signif.txt"),  delim = '\t')
+    signif_dat <-read_delim(url("https://www.ngdc.noaa.gov/nndc/struts/results?type_0=Exact&query_0=$ID&t=101650&s=13&d=189&dfn=signif.txt"),  delim = '\t')
   }else{
-    signif_dat <- readr::read_delim(path,  delim = '\t')
+    signif_dat <- read_delim(path,  delim = '\t')
   }
 }
 
@@ -45,11 +45,11 @@ read_signif <- function(path = system.file("extdata", "signif.txt", package = "M
 #' @export
 eq_clean_data <- function(dat = read_signif()) {
   dt_clean_month_day_date_long_lat <- dat %>%
-    dplyr::mutate(MONTH = ifelse(is.na(MONTH), 1, MONTH)) %>%
-    dplyr::mutate(DAY = ifelse(is.na(DAY), 1, DAY)) %>%
-    dplyr::mutate(DATE = make_date(YEAR, MONTH, DAY)) %>%
-    dplyr::mutate(LATITUDE = as.numeric(LATITUDE)) %>%
-    dplyr::mutate(LONGITUDE = as.numeric(LONGITUDE))
+    mutate(MONTH = ifelse(is.na(MONTH), 1, MONTH)) %>%
+    mutate(DAY = ifelse(is.na(DAY), 1, DAY)) %>%
+    mutate(DATE = make_date(YEAR, MONTH, DAY)) %>%
+    mutate(LATITUDE = as.numeric(LATITUDE)) %>%
+    mutate(LONGITUDE = as.numeric(LONGITUDE))
 
 }
 
@@ -79,10 +79,11 @@ eq_clean_data <- function(dat = read_signif()) {
 #' @export
 eq_location_clean <- function(dat = eq_clean_data()) {
   clean_location <- dat %>%
-    tidyr::separate(LOCATION_NAME, c("first", "second"), sep = ":") %>%
-    dplyr::select(-first) %>%
-    dplyr::rowwise() %>%
-    dplyr::mutate(LOCATION_NAME = ifelse(is.na(second), "Unidentified", stri_trans_totitle(tolower(second)))) %>%
+    separate(LOCATION_NAME, c("first", "second"), sep = ":") %>%
+    select(-first) %>%
+    rowwise() %>%
+    mutate(LOCATION_NAME = ifelse(is.na(second), "Unidentified",
+                                  stri_trans_totitle(tolower(second)))) %>%
     select(-second)
 
 }
